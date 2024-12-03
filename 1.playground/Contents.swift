@@ -1,4 +1,5 @@
 import Foundation
+import Testing
 
 guard let listFile = Bundle.main.url(forResource: "input", withExtension: "txt") else {
     fatalError("Couldn't find input file")
@@ -39,3 +40,12 @@ func getDistance(_ leftArray: [Int], _ rightArray: [Int]) -> UInt {
 }
 
 getDistance(leftValues, rightValues)
+
+// Part Two
+func getSimilarityScore(_ leftArray: [Int], _ rightArray: [Int]) -> Int {
+    leftArray.reduce(0, { score, leftValue in
+        score + leftValue * rightArray.count(where: { $0 == leftValue })
+    })
+}
+
+getSimilarityScore(leftValues, rightValues)
